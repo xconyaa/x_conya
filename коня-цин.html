@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>x_conya | Цифровой Художник</title>
+    
+    <!-- Font: Inter (Чистый, Профессиональный) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons: FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        // Конфигурация Tailwind для цветовой палитры
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Профессиональная Темная Палитра
+                        page: '#0a0a0a',     // Очень темно-серый, почти черный
+                        card: '#171717',     // Чуть светлее для карточек
+                        accent: '#10B981',   // Изумрудно-зеленый акцент
+                        accentHover: '#059669',
+                        text: {
+                            main: '#FAFAFA',
+                            muted: '#A3A3A3'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #FAFAFA;
+        }
+        
+        /* Плавное появление элементов */
+        /* Animation: Fade Up for initial load */
+        .fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom Hover Effect for Contact Cards (subtle glow) */
+        .contact-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition curve */
+        }
+        .contact-card-hover:hover {
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.1), 0 4px 6px -4px rgba(16, 185, 129, 0.05); /* Subtle accent shadow */
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-accent selection:text-white">
+
+    <!-- Навигация -->
+    <nav class="fixed w-full z-50 top-0 bg-page/90 backdrop-blur-sm border-b border-white/5">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-semibold tracking-tight hover:text-accent transition-colors duration-300">
+                x_conya
+            </a>
+
+            <!-- Ссылки для Десктопа -->
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-text-muted">
+                <a href="#about" class="hover:text-white transition-colors duration-300">Обо мне</a>
+                <a href="#teams" class="hover:text-white transition-colors duration-300">Команды</a>
+                <a href="#portfolio" class="hover:text-white transition-colors duration-300">Портфолио</a>
+                <a href="#contact" class="hover:text-white transition-colors duration-300">Соцсети</a>
+            </div>
+
+            <!-- Кнопка для Мобильной Версии -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Мобильное Меню -->
+    <div id="mobile-menu" class="fixed inset-0 bg-page z-40 transform translate-x-full transition-transform duration-300 pt-24 px-6 md:hidden">
+        <div class="flex flex-col space-y-6 text-2xl font-light">
+            <a href="#about" class="mobile-link text-white border-b border-white/10 pb-4">Обо мне</a>
+            <a href="#teams" class="mobile-link text-white border-b border-white/10 pb-4">Команды</a>
+            <a href="#portfolio" class="mobile-link text-white border-b border-white/10 pb-4">Портфолио</a>
+            <a href="#contact" class="mobile-link text-white border-b border-white/10 pb-4">Соцсети</a>
+            <button id="close-menu" class="absolute top-6 right-6 text-text-muted hover:text-white transition-colors duration-300">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Заголовок (Hero Section) -->
+    <header class="min-h-screen flex flex-col justify-center items-start max-w-5xl mx-auto px-6 pt-20">
+        <div class="max-w-2xl">
+            <p class="text-accent font-medium mb-4 fade-up">Цифровой художник & Контент-мейкер</p> 
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight fade-up delay-100">
+                x_conya
+            </h1>
+            <p class="text-xl text-text-muted mb-8 leading-relaxed fade-up delay-200">
+                Занимаюсь созданием 3D-рендеров и стримингом.
+            </p>
+            <div class="flex gap-4 fade-up delay-300">
+                <a href="#contact" class="px-6 py-3 bg-white text-black font-semibold rounded hover:bg-accent hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-accent/40">
+                    Связаться
+                </a>
+                <a href="#portfolio" class="px-6 py-3 border border-white/20 rounded hover:border-white transition-colors duration-300">
+                    Смотреть Портфолио
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Секция: Обо мне (ДОБАВЛЕН АВАТАР) -->
+    <section id="about" class="py-20 px-6 border-t border-white/5">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+            
+            <!-- Колонка 1: Аватар (Заглушка) -->
+            <div class="md:col-span-1 flex justify-center md:justify-start fade-up delay-100">
+                <!-- Замените эту ссылку на ссылку на ваш аватар: https://placehold.co/400x400/10B981/FAFAFA?text=x_conya+Avatar -->
+                <img src="C:\Users\pavlo\Desktop\Новая папка (2)\my skin.png" 
+                     alt="" 
+                     class="w-48 h-48 object-cover rounded-full md:rounded-xl border-4 border-accent shadow-xl transition-all duration-500 hover:scale-[1.03]">
+            </div>
+
+            <!-- Колонка 2 & 3: Текст и Ключевые Направления -->
+            <div class="md:col-span-2">
+                <h2 class="text-3xl font-bold mb-6">Обо мне</h2>
+                <div class="h-1 w-20 bg-accent mb-6"></div>
+                <p class="text-text-muted leading-relaxed mb-6">
+                    Мне 13 лет. Я цифровой художник, фокусирующийся на создании 3D-рендеров в Blender. Я постоянно учусь и ищу новые идеи.
+                </p>
+                <p class="text-text-muted leading-relaxed mb-8">
+                    Помимо 3D-графики, я активно занимаюсь стримингом, делясь процессом работы и играми, которые вы можете посмотреть на моем Twitch канале <a href="https://www.twitch.tv/x_conya_nesonya" target="_blank" class="text-accent hover:underline transition-colors duration-300">x_conya_nesonya</a>.
+                </p>
+
+                <div class="bg-card p-8 rounded-xl border border-white/5 transition-all duration-300 hover:border-white/20">
+                    <h3 class="text-lg font-semibold mb-4 text-white">Ключевые направления</h3>
+                    <div class="space-y-4">
+                        <div class="text-sm text-text-muted transition-colors duration-300 hover:text-white">
+                            <i class="fas fa-cube text-accent mr-2"></i> 3D Рендеринг (Blender)
+                        </div>
+                        <div class="text-sm text-text-muted transition-colors duration-300 hover:text-white">
+                            <i class="fas fa-laptop-code text-accent mr-2"></i> Визуальный Дизайн
+                        </div>
+                        <div class="text-sm text-text-muted transition-colors duration-300 hover:text-white">
+                            <i class="fab fa-twitch text-accent mr-2"></i> Стриминг / Создание контента
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция: Команды -->
+    <section id="teams" class="py-20 px-6 bg-card/30">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold mb-10">Команды</h2>
+            
+            <!-- Lis Studio Card -->
+            <div class="group relative bg-card border border-white/5 p-8 rounded-xl hover:border-accent/30 transition-all duration-300 contact-card-hover">
+                <div class="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors duration-300">Lis Studio</h3>
+                        <p class="text-text-muted mb-4 max-w-xl">
+                            Участник студии Lis Studio. Мы работаем над различными творческими и цифровыми проектами совместно.
+                        </p>
+                    </div>
+                    <a href="https://t.me/ogneyinrb" target="_blank" class="flex items-center gap-2 text-sm font-medium text-white bg-white/5 px-4 py-2 rounded-full hover:bg-accent hover:text-white transition-all duration-300">
+                        <i class="fab fa-telegram-plane"></i> Посетить канал
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция: Портфолио (ДОБАВЛЕНА ГАЛЕРЕЯ) -->
+    <section id="portfolio" class="py-20 px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Портфолио</h2>
+            
+            <p class="text-xl text-text-muted mb-10 max-w-2xl mx-auto">
+                Все мои работы и 3D-рендеры собраны в специальном Telegram-канале. Ниже представлены некоторые примеры.
+            </p>
+
+            <!-- Grid for Image Examples (Заглушки) -->
+            <!-- Замените "src" на ссылки на ваши работы -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-12 mb-10">
+                <!-- Image 1 -->
+                <div class="bg-card rounded-xl overflow-hidden border border-white/5 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-accent/20">
+                    <img src="C:\Users\pavlo\Desktop\Новая папка (2)\cитх.png" alt="" class="w-full h-auto object-cover aspect-[4/3]">
+                    <p class="p-4 text-sm text-text-muted"></p>
+                </div>
+                <!-- Image 2 -->
+                <div class="bg-card rounded-xl overflow-hidden border border-white/5 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-accent/20">
+                    <img src="C:\Users\pavlo\Desktop\Новая папка (2)\flow.png" alt="" class="w-full h-auto object-cover aspect-[4/3]">
+                    <p class="p-4 text-sm text-text-muted"></p>
+                </div>
+                <!-- Image 3 -->
+                <div class="bg-card rounded-xl overflow-hidden border border-white/5 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-accent/20">
+                    <img src="C:\Users\pavlo\Desktop\Новая папка (2)\untitled (4).png" alt="" class="w-full h-auto object-cover aspect-[4/3]">
+                    <p class="p-4 text-sm text-text-muted"></p>
+                </div>
+            </div>
+
+
+            <!-- Улучшенная Анимация Кнопки -->
+            <a href="https://t.me/portfolio_xconya" target="_blank" class="inline-flex items-center justify-center 
+                px-10 py-4 text-lg font-bold uppercase tracking-wider 
+                bg-accent text-black rounded-xl 
+                hover:bg-accentHover 
+                transition-all duration-300 ease-in-out 
+                transform hover:scale-[1.05] 
+                shadow-md hover:shadow-2xl hover:shadow-accent/50
+                border-2 border-accent">
+                <i class="fab fa-telegram-plane mr-3 text-xl"></i> 
+                Перейти в Telegram
+            </a>
+
+            <!-- Старая ссылка, теперь она главная, но оставим ее как обычный текст для наглядности, если нужно -->
+            <p class="mt-4 text-sm text-text-muted">t.me/portfolio_xconya</p>
+
+        </div>
+    </section>
+
+    <!-- Секция: Контакты / Соцсети -->
+    <section id="contact" class="py-24 px-6 bg-card/20 border-t border-white/5">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Мои Соцсети и Контакты</h2>
+            
+            <!-- 2x2 Grid для четырех элементов -->
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+                
+                <!-- 1. Telegram (Личный) -->
+                <a href="https://t.me/x_conya" target="_blank" class="contact-card-hover flex flex-col items-center justify-center p-4 md:p-6 bg-card rounded-xl border border-white/5 hover:border-accent hover:-translate-y-1 transition-all duration-300">
+                    <i class="fab fa-telegram text-2xl md:text-3xl mb-2 text-accent"></i>
+                    <span class="font-medium text-sm md:text-base">Telegram (ЛС)</span>
+                    <span class="text-xs text-text-muted mt-1">@x_conya</span>
+                </a>
+
+                <!-- 2. Telegram (ТГК x_conyamods) -->
+                <a href="https://t.me/x_conyamods" target="_blank" class="contact-card-hover flex flex-col items-center justify-center p-4 md:p-6 bg-card rounded-xl border border-white/5 hover:border-accent hover:-translate-y-1 transition-all duration-300">
+                    <i class="fab fa-telegram-plane text-2xl md:text-3xl mb-2 text-accent"></i>
+                    <span class="font-medium text-sm md:text-base">ТГ Канал</span>
+                    <span class="text-xs text-text-muted mt-1">@x_conyamods</span>
+                </a>
+
+                <!-- 3. Discord (Кнопка с копированием) -->
+                <button onclick="copyDiscord()" class="contact-card-hover flex flex-col items-center justify-center p-4 md:p-6 bg-card rounded-xl border border-white/5 hover:border-accent hover:-translate-y-1 transition-all duration-300 group relative">
+                    <i class="fab fa-discord text-2xl md:text-3xl mb-2 text-text-muted group-hover:text-white transition-colors duration-300"></i>
+                    <span class="font-medium text-sm md:text-base">Discord</span>
+                    <span class="text-xs text-text-muted mt-1">pomidor4</span>
+                    
+                    <!-- Тултип -->
+                    <span id="copy-tooltip" class="absolute top-1 right-1 text-[10px] font-bold bg-accent text-white px-2 py-0.5 rounded opacity-0 transition-opacity duration-300">Скопировано!</span>
+                </button>
+
+                <!-- 4. Twitch -->
+                <a href="https://www.twitch.tv/x_conya_nesonya" target="_blank" class="contact-card-hover flex flex-col items-center justify-center p-4 md:p-6 bg-card rounded-xl border border-white/5 hover:border-purple-500 hover:-translate-y-1 transition-all duration-300">
+                    <i class="fab fa-twitch text-2xl md:text-3xl mb-2 text-text-muted group-hover:text-[#9147FF] transition-colors duration-300"></i>
+                    <span class="font-medium text-sm md:text-base">Twitch</span>
+                    <span class="text-xs text-text-muted mt-1">x_conya_nesonya</span>
+                </a>
+            </div>
+
+            <footer class="mt-20 text-sm text-text-muted">
+                <p>&copy; 2025 x_conya. Все права защищены.</p>
+            </footer>
+        </div>
+    </section>
+
+    <script>
+        // Мобильное Меню
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('translate-x-full');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Функция Копирования Discord ID
+        function copyDiscord() {
+            const discordUser = "pomidor4";
+            
+            // Используем современный API для копирования
+            navigator.clipboard.writeText(discordUser).then(() => {
+                const tooltip = document.getElementById('copy-tooltip');
+                tooltip.classList.remove('opacity-0');
+                // Показываем тултип на 2 секунды
+                setTimeout(() => tooltip.classList.add('opacity-0'), 2000);
+            }).catch(() => {
+                // Фоллбэк: используем execCommand для совместимости
+                const textArea = document.createElement("textarea");
+                textArea.value = discordUser;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    const tooltip = document.getElementById('copy-tooltip');
+                    tooltip.classList.remove('opacity-0');
+                    setTimeout(() => tooltip.classList.add('opacity-0'), 2000);
+                } catch (err) {
+                    console.error('Не удалось скопировать ID Discord. Пожалуйста, скопируйте вручную: ', discordUser);
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+    </script>
+</body>
+</html>
